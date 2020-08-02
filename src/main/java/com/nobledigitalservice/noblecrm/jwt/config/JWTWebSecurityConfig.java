@@ -29,12 +29,22 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService jwtInMemoryUserDetailsService;
 
+//    @Autowired
+//    private UserDetailsService jwtUserDetailService;
+
     @Autowired
     private JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter;
+
 
     @Value("${jwt.get.token.uri}")
     private String authenticationPath;
 
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(jwtUserDetailService).passwordEncoder(passwordEncoderBean());
+//    }
+
+      // TODO Remove when safe to do so
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtInMemoryUserDetailsService).passwordEncoder(passwordEncoderBean());
