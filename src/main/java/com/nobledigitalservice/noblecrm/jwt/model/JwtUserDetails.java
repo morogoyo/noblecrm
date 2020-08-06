@@ -16,16 +16,15 @@ public class JwtUserDetails implements UserDetails {
     private final Long id;
     private final String username;
     private final String password;
-    private final String email;
+
 
     private final Collection<? extends GrantedAuthority> authorities;
 
 
-    public JwtUserDetails(Long id, String username, String password, String role, String email) {
+    public JwtUserDetails(Long id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.email = email;
 
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
@@ -77,11 +76,5 @@ public class JwtUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-
 
 }

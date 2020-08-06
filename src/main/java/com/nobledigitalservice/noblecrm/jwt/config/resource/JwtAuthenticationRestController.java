@@ -3,6 +3,7 @@ package com.nobledigitalservice.noblecrm.jwt.config.resource;
 import com.nobledigitalservice.noblecrm.jwt.config.JwtTokenUtil;
 import com.nobledigitalservice.noblecrm.jwt.model.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +31,9 @@ public class JwtAuthenticationRestController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Qualifier("inDatabase")
     @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
+    private UserDetailsService jwtInDBUserDetailsService;
 
 
 
@@ -41,7 +43,7 @@ public class JwtAuthenticationRestController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = jwtInMemoryUserDetailsService
+        final UserDetails userDetails = jwtInDBUserDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
               final String token = jwtTokenUtil.generateToken(userDetails);
@@ -54,7 +56,7 @@ public class JwtAuthenticationRestController {
         String authToken = request.getHeader(tokenHeader);
         final String token = authToken.substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUserDetails user = (JwtUserDetails) jwtInMemoryUserDetailsService.loadUserByUsername(username);
+        JwtUserDetails user = (JwtUserDetails) jwtInDBUserDetailsService.loadUserByUsername(username);
 
         if (jwtTokenUtil.canTokenBeRefreshed(token)) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
