@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface JwtService {
 
-    List<UserDTO> findByUserName(String userName);
+    List<UserDTO> findByUserNameAndPassword(String userName, String password);
 
 }

@@ -2,6 +2,8 @@ package com.nobledigitalservice.noblecrm.jwt.config.resource;
 
 import com.nobledigitalservice.noblecrm.jwt.config.JwtTokenUtil;
 import com.nobledigitalservice.noblecrm.jwt.model.JwtUserDetails;
+import com.nobledigitalservice.noblecrm.jwt.model.UserDTO;
+import com.nobledigitalservice.noblecrm.jwt.serviceIterface.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,6 +37,9 @@ public class JwtAuthenticationRestController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private JwtService jwtService;
+
     @Qualifier("inDatabase")
     @Autowired
     private UserDetailsService jwtInDBUserDetailsService;
@@ -43,22 +50,37 @@ public class JwtAuthenticationRestController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
             throws AuthenticationException {
 
-//        final UserDetails userDetails = jwtInDBUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
-        LOG.info(authenticationRequest.getUsername());
-        LOG.info(authenticationRequest.getPassword());
-        LOG.info("Before authentication method");
+        Optional<List<UserDTO>> user = Optional.ofNullable(jwtService.findByUserNameAndPassword(authenticationRequest.getUsername(),authenticationRequest.getPassword()));
+
+        if(!user.isPresent()){
+            return new ResponseEntity<String>("User Name and Password are Incorrect",HttpStatus.NOT_FOUND);
+
+
+        }else{
+            LOG.info("////////////////////////////////////////////  controller "+user.get().get(0).getUserName());
+            final UserDetails userDetails = (UserDetails) jwtInDBUserDetailsService
+                    .loadUserByUsername(user.get().get(0).getUserName());
+
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            return ResponseEntity.ok(new JwtTokenResponse(token));
+
+
+        }
+
+
+
+        //        LOG.info(authenticationRequest.getUsername());
+//        LOG.info(authenticationRequest.getPassword());
+//        LOG.info("Before authentication method");
 
 //        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        LOG.info("Pased authentication method");
-        final UserDetails userDetails = jwtInDBUserDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
-        LOG.info(userDetails.getUsername());
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtTokenResponse(token));
+
+
+
     }
 
     @RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)

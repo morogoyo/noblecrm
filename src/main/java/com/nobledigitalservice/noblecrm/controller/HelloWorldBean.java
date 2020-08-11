@@ -1,4 +1,4 @@
-package com.nobledigitalservice.noblecrm.jwt.controller;
+package com.nobledigitalservice.noblecrm.controller;
 
 public class HelloWorldBean {
 

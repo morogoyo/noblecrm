@@ -45,6 +45,8 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
       // TODO Remove when safe to do so
+
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtInMemoryUserDetailsService).passwordEncoder(passwordEncoderBean());
