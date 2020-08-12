@@ -49,38 +49,21 @@ public class JwtAuthenticationRestController {
     @RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
             throws AuthenticationException {
+        // Initial DB Query
+        Optional<UserDTO> user = Optional.ofNullable(jwtService.findByUserNameAndPassword(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
-
-        Optional<List<UserDTO>> user = Optional.ofNullable(jwtService.findByUserNameAndPassword(authenticationRequest.getUsername(),authenticationRequest.getPassword()));
-
-        if(!user.isPresent()){
-            return new ResponseEntity<String>("User Name and Password are Incorrect",HttpStatus.NOT_FOUND);
-
-
-        }else{
-            LOG.info("////////////////////////////////////////////  controller "+user.get().get(0).getUserName());
+//        Checks if optional is empty
+        if (!user.isPresent()) {
+            return new ResponseEntity<String>("User Name and Password are Incorrect", HttpStatus.NOT_FOUND);
+        } else
+            {
+            LOG.info("////////////////////////////////////////////  controller " + user.get().getUserName());
             final UserDetails userDetails = (UserDetails) jwtInDBUserDetailsService
-                    .loadUserByUsername(user.get().get(0).getUserName());
+                    .loadUserByUsername(user.get().getUserName());
 
             final String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtTokenResponse(token));
-
-
         }
-
-
-
-        //        LOG.info(authenticationRequest.getUsername());
-//        LOG.info(authenticationRequest.getPassword());
-//        LOG.info("Before authentication method");
-
-//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-
-
-
-
-
     }
 
     @RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)

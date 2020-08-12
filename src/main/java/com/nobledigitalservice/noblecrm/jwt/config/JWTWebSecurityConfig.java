@@ -1,11 +1,14 @@
 package com.nobledigitalservice.noblecrm.jwt.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,10 +30,9 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtUnAuthorizedResponseAuthenticationEntryPoint jwtUnAuthorizedResponseAuthenticationEntryPoint;
 
     @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
+    @Qualifier("inDatabase")
+    private UserDetailsService jwtInDatabaseUserDetailsService;
 
-//    @Autowired
-//    private UserDetailsService jwtUserDetailService;
 
     @Autowired
     private JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter;
@@ -39,17 +41,20 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${jwt.get.token.uri}")
     private String authenticationPath;
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(jwtUserDetailService).passwordEncoder(passwordEncoderBean());
-//    }
 
-      // TODO Remove when safe to do so
-
+    // TODO Remove when safe to do so
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider =
+                new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoderBean());
+        provider.setUserDetailsService(this.jwtInDatabaseUserDetailsService);
+        return provider;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jwtInMemoryUserDetailsService).passwordEncoder(passwordEncoderBean());
+        auth.userDetailsService(jwtInDatabaseUserDetailsService).passwordEncoder(passwordEncoderBean());
     }
 
     @Bean
