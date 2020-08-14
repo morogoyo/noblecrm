@@ -1,7 +1,7 @@
 package com.nobledigitalservice.noblecrm.jwt.service;
 
 import com.nobledigitalservice.noblecrm.jwt.model.JwtUserDetails;
-import com.nobledigitalservice.noblecrm.jwt.model.UserDTO;
+import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import com.nobledigitalservice.noblecrm.jwt.repository.UserDTORepository;
 import com.nobledigitalservice.noblecrm.jwt.serviceIterface.JwtService;
 import org.slf4j.Logger;
@@ -39,8 +39,6 @@ public class JwtInDBUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found for username " + username);
         }
             JwtUserDetails jwtUser = new JwtUserDetails(user.get().getId(),user.get().getUserName(),user.get().getPassword(),user.get().getRole());
-
-
             return jwtUser;
 
         }

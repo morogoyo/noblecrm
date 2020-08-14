@@ -1,7 +1,6 @@
 package com.nobledigitalservice.noblecrm.jwt.serviceIterface;
 
-import com.nobledigitalservice.noblecrm.jwt.model.UserDTO;
-
+import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 
 public interface JwtService {
 

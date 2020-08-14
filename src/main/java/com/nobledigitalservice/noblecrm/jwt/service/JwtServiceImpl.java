@@ -1,7 +1,7 @@
 package com.nobledigitalservice.noblecrm.jwt.service;
 
 
-import com.nobledigitalservice.noblecrm.jwt.model.UserDTO;
+import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import com.nobledigitalservice.noblecrm.jwt.repository.UserDTORepository;
 import com.nobledigitalservice.noblecrm.jwt.serviceIterface.JwtService;
 import org.slf4j.Logger;
