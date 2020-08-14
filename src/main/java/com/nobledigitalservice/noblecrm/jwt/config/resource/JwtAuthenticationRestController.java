@@ -57,7 +57,7 @@ public class JwtAuthenticationRestController {
             return new ResponseEntity<String>("User Name and Password are Incorrect", HttpStatus.NOT_FOUND);
         } else
             {
-            LOG.info("////////////////////////////////////////////  controller " + user.get().getUserName());
+
             final UserDetails userDetails = (UserDetails) jwtInDBUserDetailsService
                     .loadUserByUsername(user.get().getUserName());
 

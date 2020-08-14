@@ -39,14 +39,9 @@ public class JwtServiceImpl implements JwtService {
 
         Optional<UserDTO> optionalUser = Optional.ofNullable(userDTOrepo.findByUserName(userName));
         UserDTO user = new UserDTO();
-        LOG.info("////////////////////////////////////////////////////////////");
-        LOG.info(optionalUser.get().getPassword() + " from database");
-        LOG.info(encoder.matches(password,optionalUser.get().getPassword()) + " from bcrypt matcher");
-        LOG.info("////////////////////////////////////////////////////////////");
-
         if (optionalUser.isPresent() && encoder.matches(password,optionalUser.get().getPassword())) {
             LOG.info("Password Matched");
-            LOG.info(encoder.matches(password,optionalUser.get().getPassword())+" password match method");
+            LOG.info("{} password match method", encoder.matches(password,optionalUser.get().getPassword()));
             user.setUserName(optionalUser.get().getUserName());
             user.setPassword(optionalUser.get().getPassword());
             user.setEmail(optionalUser.get().getEmail());
@@ -55,6 +50,7 @@ public class JwtServiceImpl implements JwtService {
             return user;
         } else {
             LOG.info("password did not match");
+            user.setUserName("User Not Found");
             return user;
         }
     }
