@@ -2,8 +2,7 @@ package com.nobledigitalservice.noblecrm.jwt.service;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
-import com.nobledigitalservice.noblecrm.jwt.repository.UserDTORepository;
-import com.nobledigitalservice.noblecrm.jwt.serviceIterface.JwtService;
+import com.nobledigitalservice.noblecrm.repository.UserDTORepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
