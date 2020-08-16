@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-class ClientServiceImplTest {
+class ClientControllerServiceImplTest {
 
     @Mock
     UserDTORepository userDTORepository;
