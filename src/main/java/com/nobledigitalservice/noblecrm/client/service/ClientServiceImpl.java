@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientServiceImpl implements ClientService{
+public class ClientServiceImpl implements ClientService {
 
     @Autowired
     private UserDTORepository userRepo;
@@ -40,9 +40,9 @@ public class ClientServiceImpl implements ClientService{
         Optional<UserDTO> userRepoByUserName = Optional.ofNullable(userRepo.findByUserName(updatedUser.getUserName()));
 
         Optional<UserDTO> savedUser = null;
-        if(!userRepoByUserName.isPresent()){
+        if (!userRepoByUserName.isPresent()) {
             return savedUser = Optional.empty();
-        }else{
+        } else {
             userRepoByUserName.get().setEmail(updatedUser.getEmail());
             userRepoByUserName.get().setPassword(updatedUser.getPassword());
             userRepoByUserName.get().setRole(updatedUser.getRole());
