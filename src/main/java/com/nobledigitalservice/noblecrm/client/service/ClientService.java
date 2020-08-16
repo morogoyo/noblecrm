@@ -5,6 +5,7 @@ import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface ClientService {
@@ -13,6 +14,6 @@ public interface ClientService {
 
     void addUser(UserDTO user);
 
-    void updateUser(UserDTO updatedUser);
+    Optional<UserDTO> updateUser(UserDTO updatedUser);
 
 }
