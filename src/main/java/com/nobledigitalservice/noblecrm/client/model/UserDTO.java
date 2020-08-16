@@ -1,4 +1,4 @@
-package com.nobledigitalservice.noblecrm.jwt.model;
+package com.nobledigitalservice.noblecrm.client.model;
 
 
 import lombok.*;
