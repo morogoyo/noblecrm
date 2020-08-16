@@ -29,4 +29,14 @@ public class ClientServiceImpl implements ClientService{
         user.setPassword(hashedPassword);
         userRepo.save(user);
     }
+
+    @Override
+    public void updateUser(UserDTO updatedUser) {
+        UserDTO userRepoByUserName = userRepo.findByUserName(updatedUser.getUserName());
+        userRepoByUserName.setPassword(updatedUser.getEmail());
+        userRepoByUserName.setPassword(updatedUser.getPassword());
+        userRepoByUserName.setRole(updatedUser.getRole());
+        userRepoByUserName.setUserName(updatedUser.getUserName());
+
+    }
 }

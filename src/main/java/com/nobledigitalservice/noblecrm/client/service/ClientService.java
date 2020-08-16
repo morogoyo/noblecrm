@@ -13,4 +13,6 @@ public interface ClientService {
 
     void addUser(UserDTO user);
 
+    void updateUser(UserDTO updatedUser);
+
 }

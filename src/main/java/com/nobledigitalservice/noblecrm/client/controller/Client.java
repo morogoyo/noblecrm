@@ -35,5 +35,13 @@ public class Client {
         clientService.addUser(user);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUserInfo(@RequestBody UserDTO updatedUser){
+        // TODO update user with in service client service
+
+
+        return new ResponseEntity<>();
+    }
+
 
 }
