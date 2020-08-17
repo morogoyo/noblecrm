@@ -24,6 +24,19 @@ public class ClientServiceImpl implements ClientService {
         return userRepo.findAll();
     }
 
+
+    @Override
+    public Optional<UserDTO> getUser(UserDTO user) {
+        Optional<UserDTO> byUserName = Optional.ofNullable(userRepo.findByUserName(user.getUserName()));
+        if(!byUserName.isPresent()){
+            return Optional.empty();
+        }else{
+            return byUserName;
+
+        }
+
+    }
+
     @Override
     public void addUser(UserDTO user) {
         String hashedPassword = passwordUtilityService.hashPassword(user.getPassword());
@@ -41,7 +54,7 @@ public class ClientServiceImpl implements ClientService {
 
         Optional<UserDTO> savedUser = null;
         if (!userRepoByUserName.isPresent()) {
-            return savedUser = Optional.empty();
+            return Optional.empty();
         } else {
             userRepoByUserName.get().setEmail(updatedUser.getEmail());
             userRepoByUserName.get().setPassword(updatedUser.getPassword());
@@ -52,5 +65,10 @@ public class ClientServiceImpl implements ClientService {
         }
 
 
+    }
+
+    @Override
+    public void deleteUser(UserDTO userToDelete) {
+        userRepo.delete(userToDelete);
     }
 }

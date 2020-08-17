@@ -31,6 +31,11 @@ public class ClientController {
 
     }
 
+    @PostMapping("/find-client")
+    public void findClient(@RequestBody UserDTO user) {
+        clientService.getUser(user);
+    }
+
     @PostMapping("/add")
     public void addClient(@RequestBody UserDTO user) {
         clientService.addUser(user);
@@ -39,14 +44,24 @@ public class ClientController {
     @PutMapping("/update")
     public ResponseEntity<?> updateClientInfo(@RequestBody UserDTO updatedUser) {
         // TODO update user with in service client service
-
         Optional<UserDTO> updatedUserInfo = clientService.updateUser(updatedUser);
-
         if (!updatedUserInfo.isPresent()) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(updatedUserInfo, HttpStatus.OK);
+    }
+
+    @PostMapping("delete")
+    public ResponseEntity<?> deleteClient(@RequestBody UserDTO userToDelet){
+        clientService.deleteUser(userToDelet);
+        Optional<UserDTO> checkUser = Optional.ofNullable(userToDelet);
+
+        if(!checkUser.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(userToDelet.toString() + "was deleted",HttpStatus.OK);
+        }
     }
 
 }

@@ -12,8 +12,12 @@ public interface ClientService {
 
     List<UserDTO> getAllUsers();
 
+    Optional<UserDTO> getUser(UserDTO userName);
+
     void addUser(UserDTO user);
 
     Optional<UserDTO> updateUser(UserDTO updatedUser);
+
+    void deleteUser(UserDTO userToDelete);
 
 }
