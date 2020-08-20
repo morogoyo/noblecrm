@@ -32,8 +32,14 @@ public class ClientController {
     }
 
     @PostMapping("/find-client")
-    public void findClient(@RequestBody UserDTO user) {
-        clientService.getUser(user);
+    public ResponseEntity<?> findClient(@RequestBody UserDTO user) {
+
+        Optional<UserDTO> client = clientService.getUser(user);
+        if (!client.isPresent()) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(client.get(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
