@@ -1,4 +1,4 @@
-package com.nobledigitalservice.noblecrm.client.service;
+package com.nobledigitalservice.noblecrm.client.services;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Optional<UserDTO> updateUser(UserDTO updatedUser) {
 
-        /* TODO need to add logic to be able to completly change all user field will be using id
+        /* TODO need to add logic to be able to completely change all user field will be using id
          got to return the entity and grab the id to be able to change other staple fields like
          username and email.*/
         Optional<UserDTO> userRepoByUserName = Optional.ofNullable(userRepo.findByUserName(updatedUser.getUserName()));

@@ -1,8 +1,8 @@
-package com.nobledigitalservice.noblecrm.client.controller;
+package com.nobledigitalservice.noblecrm.client.controllers;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
-import com.nobledigitalservice.noblecrm.client.service.ClientService;
+import com.nobledigitalservice.noblecrm.client.services.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping(value = "/client")
 public class ClientController {
@@ -22,9 +24,9 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/all")
+    @GetMapping(value = "/all",produces = "application/json")
     public ResponseEntity<?> getAllClient() {
-//        LOG.info("got to the controller");
+//        LOG.info("got to the controllers");
 
         List<UserDTO> users = clientService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);

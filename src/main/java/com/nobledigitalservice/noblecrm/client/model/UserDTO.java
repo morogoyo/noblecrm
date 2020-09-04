@@ -17,13 +17,15 @@ import java.io.Serializable;
 public class UserDTO  implements Serializable {
 
 
-    @Column(unique = true, name ="email")
-    private String email;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(unique = true, name ="email")
+    private String email;
 
     @Column(unique = true, name= "username")
     private String userName;

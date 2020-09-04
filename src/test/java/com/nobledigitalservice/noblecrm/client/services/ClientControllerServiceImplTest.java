@@ -1,4 +1,4 @@
-package com.nobledigitalservice.noblecrm.client.service;
+package com.nobledigitalservice.noblecrm.client.services;
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import com.nobledigitalservice.noblecrm.repository.UserDTORepository;
