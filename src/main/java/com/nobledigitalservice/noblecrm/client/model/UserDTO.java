@@ -16,11 +16,11 @@ import java.io.Serializable;
 @Entity
 public class UserDTO  implements Serializable {
 
-
+    @Id
     @Column(unique = true, name ="email")
     private String email;
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
@@ -34,11 +34,6 @@ public class UserDTO  implements Serializable {
     @Column(name ="role")
     private String role;
 
-
-
-
-//    @OneToOne(mappedBy = "userDTO", cascade = CascadeType.ALL)
-//    private Users user;
 
 
 
