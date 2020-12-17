@@ -2,7 +2,6 @@ package com.nobledigitalservice.noblecrm.client.controller;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
-import com.nobledigitalservice.noblecrm.client.model.UserInfo;
 import com.nobledigitalservice.noblecrm.client.service.ClientService;
 import com.nobledigitalservice.noblecrm.repository.UserInfoRepository;
 import org.slf4j.Logger;
@@ -32,23 +31,6 @@ public class ClientController {
         List<UserDTO> client = clientService.getAllUsers();
         return new ResponseEntity<>(client, HttpStatus.OK);
 
-    }
-
-    @GetMapping("/all-users")
-    public ResponseEntity<?> getAllUserInfo(){
-        List<UserInfo> userInfo = userInfoRepository.findAll();
-        return new ResponseEntity<>( userInfo, HttpStatus.OK);
-        }
-
-    @PostMapping("/find-user")
-    public ResponseEntity<?> findUser(@RequestBody UserDTO user) {
-
-        Optional<UserDTO> client = clientService.getUser(user);
-        if (!client.isPresent()) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(client.get(), HttpStatus.OK);
     }
 
     @PostMapping("/find-client")
