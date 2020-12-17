@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDTORepository extends JpaRepository<UserDTO,Long> {
+public interface UserDTORepository extends JpaRepository<UserDTO, String> {
 
     UserDTO findByUserName(String userName);
 

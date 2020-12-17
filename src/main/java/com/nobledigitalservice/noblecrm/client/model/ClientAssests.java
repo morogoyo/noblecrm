@@ -14,27 +14,23 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class UserDTO  implements Serializable {
+public class ClientAssests implements Serializable {
 
     @Id
     @Column(unique = true, name ="email")
     private String email;
 
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(unique = true, name= "username")
-    private String userName;
+    @Column
+    private String adminURL;
 
-    @Column(name ="password")
-    private String password;
+    @Column
+    private String siteURL;
 
-    @Column(name ="role")
-    private String role;
-
-
-
+    @Column
+    private String services;
 
 }

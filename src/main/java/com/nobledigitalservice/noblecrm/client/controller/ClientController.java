@@ -3,6 +3,7 @@ package com.nobledigitalservice.noblecrm.client.controller;
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import com.nobledigitalservice.noblecrm.client.service.ClientService;
+import com.nobledigitalservice.noblecrm.repository.UserInfoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,13 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+
     @GetMapping("/all")
     public ResponseEntity<?> getAllClient() {
-//        LOG.info("got to the controller");
-
-        List<UserDTO> users = clientService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        List<UserDTO> client = clientService.getAllUsers();
+        return new ResponseEntity<>(client, HttpStatus.OK);
 
     }
 
@@ -46,6 +48,8 @@ public class ClientController {
     public void addClient(@RequestBody UserDTO user) {
         clientService.addUser(user);
     }
+
+
 
     @PutMapping("/update")
     public ResponseEntity<?> updateClientInfo(@RequestBody UserDTO updatedUser) {

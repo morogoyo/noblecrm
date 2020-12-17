@@ -15,7 +15,7 @@
     <description>Noble-Digital-Services-Customer-Relationship-Manager</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <dependencies>
