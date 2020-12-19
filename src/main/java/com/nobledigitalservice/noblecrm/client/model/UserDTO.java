@@ -34,7 +34,9 @@ public class UserDTO  implements Serializable {
     @Column(name ="role")
     private String role;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email")
+    private UserInfo userInfo;
 
 
 }

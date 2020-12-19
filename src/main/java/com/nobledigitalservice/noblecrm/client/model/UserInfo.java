@@ -16,8 +16,13 @@ import java.io.Serializable;
 @Table
 public class UserInfo implements Serializable {
 
-    @Id
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Id
+    @Column
+    private String email;
 
     @Column
     private String address;
@@ -38,7 +43,7 @@ public class UserInfo implements Serializable {
     private String birthDay;
 
     @Column
-    private String JobTitle;
+    private String jobTitle;
 
     @Column
     private String demographicInfo;
@@ -55,6 +60,4 @@ public class UserInfo implements Serializable {
     @Column
     private String numberOfChildren;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserDTO userDto;
 }

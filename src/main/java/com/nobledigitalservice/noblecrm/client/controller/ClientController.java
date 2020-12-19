@@ -62,7 +62,7 @@ public class ClientController {
         return new ResponseEntity<>(updatedUserInfo, HttpStatus.OK);
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ResponseEntity<?> deleteClient(@RequestBody UserDTO userToDelet){
         clientService.deleteUser(userToDelet);
         Optional<UserDTO> checkUser = Optional.ofNullable(userToDelet);
