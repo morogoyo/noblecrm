@@ -39,4 +39,9 @@ public class UserDTO  implements Serializable {
     private UserInfo userInfo;
 
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email")
+    private ClientAssests clientAssests;
+
+
 }

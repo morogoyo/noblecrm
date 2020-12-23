@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<UserDTO> getUser(UserDTO user) {
-        Optional<UserDTO> byUserName = Optional.ofNullable(userRepo.findByUserName(user.getUserName()));
+        Optional<UserDTO> byUserName = Optional.ofNullable(userRepo.findByEmail(user.getEmail()));
         if(!byUserName.isPresent()){
             return Optional.empty();
         }else{
