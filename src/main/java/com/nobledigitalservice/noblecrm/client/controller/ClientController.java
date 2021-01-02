@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController()
 @RequestMapping(value = "/client")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     private final Logger LOG = LoggerFactory.getLogger(ClientController.class);
@@ -62,7 +63,7 @@ public class ClientController {
         return new ResponseEntity<>(updatedUserInfo, HttpStatus.OK);
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ResponseEntity<?> deleteClient(@RequestBody UserDTO userToDelet){
         clientService.deleteUser(userToDelet);
         Optional<UserDTO> checkUser = Optional.ofNullable(userToDelet);
