@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController()
 @RequestMapping(value = "/client")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     private final Logger LOG = LoggerFactory.getLogger(ClientController.class);
