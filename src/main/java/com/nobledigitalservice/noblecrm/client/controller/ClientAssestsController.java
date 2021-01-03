@@ -2,12 +2,10 @@ package com.nobledigitalservice.noblecrm.client.controller;
 
 
 import com.nobledigitalservice.noblecrm.client.service.ClientAssetsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/assets")
 public class ClientAssestsController {
 
