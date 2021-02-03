@@ -15,4 +15,6 @@ values ("Software Engineer","123 main st.","Orlando","Florida",12345,
 --        );
 
 
-
+insert into adminurls (url,id,email)
+values ("nobledigitalservices.com/admin",1,"morogoyo@gmail.com"
+       );
