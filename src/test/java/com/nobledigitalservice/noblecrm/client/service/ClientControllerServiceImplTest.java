@@ -34,7 +34,7 @@ class ClientControllerServiceImplTest {
         userList = new ArrayList<>();
         UserDTO user = new UserDTO();
         user.setEmail("morogoyo@gmail.com");
-        user.setId(1L);
+        user.setId("1");
         user.setPassword("password");
         user.setRole("Admin");
         user.setUserName("morogoyo");

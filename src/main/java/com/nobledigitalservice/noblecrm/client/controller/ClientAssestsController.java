@@ -1,7 +1,7 @@
 package com.nobledigitalservice.noblecrm.client.controller;
 
 
-import com.nobledigitalservice.noblecrm.client.service.ClientAssetsService;
+import com.nobledigitalservice.noblecrm.client.model.ClientAssets;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
@@ -11,12 +11,14 @@ public class ClientAssestsController {
 
 
 //    @Autowired
-//    private ClientAssetsRepository clientAssetsRepository;
+//    private ClientAssetsService clientAssetsService;
 
     @PostMapping(value = "/insert")
-    public void insertAssests(@RequestBody ClientAssetsService assets){
+    public String insertAssets(@RequestBody ClientAssets assets){
+//        UserDTO user = clientAssetsService.findByEmail(assets.getEmail());
+//        System.out.println(user.toString());
 
-//        clientAssetsRepository.save(assets);
+        return "Rene is a bad ass";
 
     }
 

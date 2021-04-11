@@ -21,11 +21,10 @@ public class UserDTO  implements Serializable {
     private String email;
 
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private String id;
 
-    @Column(unique = true, name= "username")
+    @Column(name="username")
     private String userName;
 
     @Column(name ="password")
@@ -34,14 +33,14 @@ public class UserDTO  implements Serializable {
     @Column(name ="role")
     private String role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "email")
     private UserInfo userInfo;
 
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
-    private ClientAssests clientAssests;
+    private ClientAssets clientAssets;
 
 
 }

@@ -50,7 +50,7 @@ public class ClientServiceImpl implements ClientService {
         /* TODO need to add logic to be able to completely change all user field will be using id
          got to return the entity and grab the id to be able to change other staple fields like
          username and email.*/
-        Optional<UserDTO> userRepoByUserName = Optional.ofNullable(userRepo.findByUserName(updatedUser.getUserName()));
+        Optional<UserDTO> userRepoByUserName = Optional.ofNullable(userRepo.findByEmail(updatedUser.getEmail()));
 
         Optional<UserDTO> savedUser = null;
         if (!userRepoByUserName.isPresent()) {

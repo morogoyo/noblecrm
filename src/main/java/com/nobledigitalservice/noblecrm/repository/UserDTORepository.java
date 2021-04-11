@@ -9,6 +9,6 @@ public interface UserDTORepository extends JpaRepository<UserDTO, String> {
 
     UserDTO findByUserName(String userName);
 
-    UserDTO findByEmail(String userName);
+    UserDTO findByEmail(String email);
 }
 

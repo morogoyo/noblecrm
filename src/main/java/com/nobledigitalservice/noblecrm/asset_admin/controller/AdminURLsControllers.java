@@ -4,9 +4,7 @@ package com.nobledigitalservice.noblecrm.asset_admin.controller;
 import com.nobledigitalservice.noblecrm.asset_admin.model.AdminURLs;
 import com.nobledigitalservice.noblecrm.repository.AdminURLsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,16 @@ public class AdminURLsControllers {
     public List<AdminURLs> getAllURLs(){
 
        return  adminURLsRepo.findAll();
+    }
+
+    @PostMapping(value = "/add-urls")
+    public AdminURLs addAdminUrl(@RequestBody AdminURLs adminURLs){
+        AdminURLs newUrl = adminURLsRepo.save(adminURLs);
+        return newUrl;
+    }
+
+    @PutMapping(value = "/update-url")
+    public AdminURLs updateUrl(){
+        return  new AdminURLs();
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController()
 @RequestMapping(value = "/client")
@@ -26,6 +27,8 @@ public class ClientController {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
+
+    private String uuid;
 
     @GetMapping("/all")
     public ResponseEntity<?> getAllClient() {
@@ -47,6 +50,9 @@ public class ClientController {
 
     @PostMapping("/add")
     public void addClient(@RequestBody UserDTO user) {
+        uuid = UUID.randomUUID().toString();
+        user.setId(uuid);
+        user.setUserName(user.getUserName());
         clientService.addUser(user);
     }
 

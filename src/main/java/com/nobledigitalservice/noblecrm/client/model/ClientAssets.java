@@ -14,13 +14,12 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class ClientAssests implements Serializable {
+public class ClientAssets implements Serializable {
 
     @Id
     @Column(unique = true, name ="email")
     private String email;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
