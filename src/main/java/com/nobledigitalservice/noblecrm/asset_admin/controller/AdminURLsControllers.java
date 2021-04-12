@@ -27,8 +27,19 @@ public class AdminURLsControllers {
         return newUrl;
     }
 
-    @PutMapping(value = "/update-url")
-    public AdminURLs updateUrl(){
-        return  new AdminURLs();
+
+    @PutMapping(value = "/update")
+    public AdminURLs updateURL(@RequestBody AdminURLs url){
+        AdminURLs editedUrl = null;
+        adminURLsRepo.findById(url.getEmail());
+        editedUrl.setUrl(url.getUrl());
+        editedUrl.setEmail(url.getEmail());
+        editedUrl.setId(url.getId());
+        return adminURLsRepo.save(editedUrl);
+    }
+
+    @PostMapping(value = "/add")
+    public AdminURLs addURL(@RequestBody AdminURLs url){
+        return adminURLsRepo.save(url);
     }
 }
