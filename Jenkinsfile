@@ -18,8 +18,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-          checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: gitRepository,
-          credentialsId: gitCredentials]], branches: [[name: st_git_branch]]],poll: false
+          git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
       }
     }
     stage('Maven clean install'){
