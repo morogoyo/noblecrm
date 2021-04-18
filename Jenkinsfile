@@ -18,7 +18,8 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-          git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
+          checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: gitRepository,
+          credentialsId: gitCredentials]], branches: [[name: st_git_branch]]],poll: false
       }
     }
     stage('Maven clean install'){
@@ -29,7 +30,8 @@ pipeline {
     }
     stage('Building image') {
       steps{
-        script {
+        dir('.'){
+            script {
                 dockerImage = docker.build dockerImageTag
             }
         }
@@ -50,4 +52,4 @@ pipeline {
       }
     }
   }
-
+}
