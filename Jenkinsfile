@@ -29,8 +29,7 @@ pipeline {
     }
     stage('Building image') {
       steps{
-        dir('.'){
-            script {
+        script {
                 dockerImage = docker.build dockerImageTag
             }
         }
