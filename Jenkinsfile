@@ -1,8 +1,8 @@
 pipeline {
-  parameters {
-      string(name: 'st_build_number', defaultValue: 'latest', description: 'The tag that will be used to tag the docker image', trim: true)
-      string(name: 'st_git_branch', defaultValue: 'develop', description: 'The git branch or tag that should be build', trim: true)
-  }
+//   parameters {
+//       string(name: 'st_build_number', defaultValue: 'latest', description: 'The tag that will be used to tag the docker image', trim: true)
+//       string(name: 'st_git_branch', defaultValue: 'develop', description: 'The git branch or tag that should be build', trim: true)
+//   }
   environment {
     dockerRegistry = "https://dockerhub.com"
     dockerImageTag = "morogoyo/noble-crm-backend:latest"
