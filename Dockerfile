@@ -8,4 +8,4 @@ WORKDIR /app
 
 ADD target/*-SNAPSHOT.jar ./app.jar
 
-ENTRYPOINT exec java -jar app.jar
+ENTRYPOINT ["java","-jar","./app.jar"]
