@@ -35,6 +35,7 @@ pipeline {
         }
       }
     }
+    }
     stage('Deploy Image to Docker Registry') {
       steps{
         script {
