@@ -1,6 +1,6 @@
 package com.nobledigitalservice.noblecrm.client.model;
 
-<<<<<<< HEAD
+
 
 import lombok.*;
 
