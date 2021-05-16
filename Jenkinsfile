@@ -11,22 +11,22 @@ pipeline {
 //     gitRepository = "git@github.com:morogoyo/noblecrm.git"
 //     dockerImage = ''
 //   }
-//   agent any
-//   tools {
-//           maven 'maven-3.6'
-//         }
-//   stages {
-//     stage('Cloning Git') {
-//       steps {
-//           git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
-//       }
-//     }
-//     stage('Maven clean install'){
-//        steps{
-//         sh 'mvn clean install -DskipTests=true'
-//         sh 'mvn package -DskipTests=true'
-//        }
-//     }
+  agent any
+  tools {
+          maven 'maven-3.6'
+        }
+  stages {
+    stage('Cloning Git') {
+      steps {
+          git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
+      }
+    }
+    stage('Maven clean install'){
+       steps{
+        sh 'mvn clean install -DskipTests=true'
+        sh 'mvn package -DskipTests=true'
+       }
+    }
 //     stage('Building image') {
 //       steps{
 //         script {
@@ -51,3 +51,4 @@ pipeline {
 //     }
 //   }
 
+}
