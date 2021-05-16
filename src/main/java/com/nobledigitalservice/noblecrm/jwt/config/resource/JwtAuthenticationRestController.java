@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.Optional;
 
-@RestController
+@RestController()
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationRestController {
 

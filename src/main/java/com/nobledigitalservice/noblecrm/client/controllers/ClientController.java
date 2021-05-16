@@ -2,7 +2,12 @@ package com.nobledigitalservice.noblecrm.client.controllers;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
+<<<<<<< HEAD:src/main/java/com/nobledigitalservice/noblecrm/client/controller/ClientController.java
+import com.nobledigitalservice.noblecrm.client.service.ClientService;
+import com.nobledigitalservice.noblecrm.repository.UserInfoRepository;
+=======
 import com.nobledigitalservice.noblecrm.client.services.ClientService;
+>>>>>>> master:src/main/java/com/nobledigitalservice/noblecrm/client/controllers/ClientController.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping(value = "/client")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     private final Logger LOG = LoggerFactory.getLogger(ClientController.class);
@@ -24,12 +31,17 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping(value = "/all",produces = "application/json")
-    public ResponseEntity<?> getAllClient() {
-//        LOG.info("got to the controllers");
 
-        List<UserDTO> users = clientService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+
+    private String uuid;
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllClient() {
+        List<UserDTO> client = clientService.getAllUsers();
+        return new ResponseEntity<>(client, HttpStatus.OK);
+
 
     }
 
@@ -46,8 +58,13 @@ public class ClientController {
 
     @PostMapping("/add")
     public void addClient(@RequestBody UserDTO user) {
+        uuid = UUID.randomUUID().toString();
+        user.setId(uuid);
+        user.setUserName(user.getUserName());
         clientService.addUser(user);
     }
+
+
 
     @PutMapping("/update")
     public ResponseEntity<?> updateClientInfo(@RequestBody UserDTO updatedUser) {
@@ -60,7 +77,7 @@ public class ClientController {
         return new ResponseEntity<>(updatedUserInfo, HttpStatus.OK);
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public ResponseEntity<?> deleteClient(@RequestBody UserDTO userToDelet){
         clientService.deleteUser(userToDelet);
         Optional<UserDTO> checkUser = Optional.ofNullable(userToDelet);

@@ -17,17 +17,15 @@ import java.io.Serializable;
 public class UserDTO  implements Serializable {
 
 
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(unique = true, name ="email")
     private String email;
 
-    @Column(unique = true, name= "username")
+    @Column(name = "id")
+    private String id;
+
+
+    @Column(name="username")
     private String userName;
 
     @Column(name ="password")
@@ -36,12 +34,14 @@ public class UserDTO  implements Serializable {
     @Column(name ="role")
     private String role;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "email")
+    private UserInfo userInfo;
 
 
-
-//    @OneToOne(mappedBy = "userDTO", cascade = CascadeType.ALL)
-//    private Users user;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email")
+    private ClientAssets clientAssets;
 
 
 }
