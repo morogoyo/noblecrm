@@ -1,5 +1,6 @@
 package com.nobledigitalservice.noblecrm.client.model;
 
+<<<<<<< HEAD
 
 import lombok.*;
 
@@ -65,5 +66,6 @@ public class UserInfo implements Serializable {
 
     @Column
     private String numberOfChildren;
+
 
 }

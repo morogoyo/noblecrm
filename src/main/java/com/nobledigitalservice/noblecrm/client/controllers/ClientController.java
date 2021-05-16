@@ -1,9 +1,13 @@
-package com.nobledigitalservice.noblecrm.client.controller;
+package com.nobledigitalservice.noblecrm.client.controllers;
 
 
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
+<<<<<<< HEAD:src/main/java/com/nobledigitalservice/noblecrm/client/controller/ClientController.java
 import com.nobledigitalservice.noblecrm.client.service.ClientService;
 import com.nobledigitalservice.noblecrm.repository.UserInfoRepository;
+=======
+import com.nobledigitalservice.noblecrm.client.services.ClientService;
+>>>>>>> master:src/main/java/com/nobledigitalservice/noblecrm/client/controllers/ClientController.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping(value = "/client")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +31,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+
     @Autowired
     private UserInfoRepository userInfoRepository;
 
@@ -34,6 +41,7 @@ public class ClientController {
     public ResponseEntity<?> getAllClient() {
         List<UserDTO> client = clientService.getAllUsers();
         return new ResponseEntity<>(client, HttpStatus.OK);
+
 
     }
 

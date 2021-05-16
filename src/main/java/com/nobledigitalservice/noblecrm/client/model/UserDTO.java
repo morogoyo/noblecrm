@@ -16,13 +16,14 @@ import java.io.Serializable;
 @Entity
 public class UserDTO  implements Serializable {
 
+
     @Id
     @Column(unique = true, name ="email")
     private String email;
 
-
     @Column(name = "id")
     private String id;
+
 
     @Column(name="username")
     private String userName;
