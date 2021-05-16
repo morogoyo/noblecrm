@@ -3,24 +3,25 @@ pipeline {
 //       string(name: 'st_build_number', defaultValue: 'latest', description: 'The tag that will be used to tag the docker image', trim: true)
 //       string(name: 'st_git_branch', defaultValue: 'develop', description: 'The git branch or tag that should be build', trim: true)
 //   }
-  environment {
-    dockerRegistry = "https://dockerhub.com"
-    dockerImageTag = "morogoyo/noble-crm-backend:latest"
-    dockerRegistryCredential = 'DockerHubCreds'
-    gitCredentials = 'git-read-only'
-    gitRepository = "git@github.com:morogoyo/noblecrm.git"
-    dockerImage = ''
-  }
+          environment {
+            dockerRegistry = "https://dockerhub.com"
+            dockerImageTag = "morogoyo/noble-crm-backend:latest"
+            dockerRegistryCredential = 'DockerHubCreds'
+            gitCredentials = 'git-read-only'
+            gitRepository = "git@github.com:morogoyo/noblecrm.git"
+            dockerImage = ''
+          }
   agent any
-  tools {
-          maven 'maven-3.6'
-        }
+      tools {
+              maven 'maven-3.6'
+            }
   stages {
     stage('Cloning Git') {
       steps {
           git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
       }
     }
+   }
     stage('Maven clean install'){
        steps{
         sh 'mvn clean install -DskipTests=true'
@@ -34,8 +35,8 @@ pipeline {
             }
         }
       }
-    }
-    }
+
+
     stage('Deploy Image to Docker Registry') {
       steps{
         script {
@@ -50,5 +51,5 @@ pipeline {
         sh "docker rmi $dockerImageTag"
       }
     }
-  }
+
 }
