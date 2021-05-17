@@ -42,8 +42,8 @@ pipeline {
                 dockerImage.push()
             }
         }
-//       }
-//     }
+      }
+    }
 //     stage('Remove Unused docker image') {
 //       steps{
 //         sh "docker rmi $dockerImageTag"
@@ -52,5 +52,4 @@ pipeline {
 //   }
 
 }
-}
-}
+
