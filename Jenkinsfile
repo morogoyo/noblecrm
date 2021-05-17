@@ -23,18 +23,18 @@ pipeline {
     }
     stage('Maven clean install'){
        steps{
-        sh 'mvn clean install -DskipTests=true'
+        sh 'mvn clean install -DskipTests=true -X'
         sh 'mvn package -DskipTests=true'
        }
     }
-//     stage('Building image') {
-//       steps{
-//         script {
-//                 dockerImage = docker.build dockerImageTag
-//             }
-//         }
-//       }
-//     }
+    stage('Building image') {
+      steps{
+        script {
+                dockerImage = docker.build dockerImageTag
+            }
+        }
+      }
+    }
 
     stage('Deploy Image to Docker Registry') {
       steps{
