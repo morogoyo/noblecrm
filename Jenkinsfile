@@ -31,7 +31,6 @@ pipeline {
       steps{
         script {
                 dockerImage = docker.build dockerImageTag
-            }
         }
       }
     }
@@ -45,13 +44,8 @@ pipeline {
         }
       }
     }
-//     stage('Remove Unused docker image') {
-//       steps{
-//         sh "docker rmi $dockerImageTag"
-//       }
-//     }
-//   }
+  }
 
 }
 
-}
+
