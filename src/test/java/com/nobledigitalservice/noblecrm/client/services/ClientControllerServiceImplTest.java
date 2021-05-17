@@ -1,5 +1,6 @@
 package com.nobledigitalservice.noblecrm.client.services;
 
+
 import com.nobledigitalservice.noblecrm.client.model.UserDTO;
 import com.nobledigitalservice.noblecrm.repository.UserDTORepository;
 import org.junit.Assert;
@@ -7,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
