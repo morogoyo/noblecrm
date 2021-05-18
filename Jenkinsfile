@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-          git branch: 'develop', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
+          git branch: 'fixing-jenkins-file', credentialsId: 'git-hub-ssh-user', url: 'git@github.com:morogoyo/noblecrm.git'
       }
     }
     stage('Maven clean install'){
