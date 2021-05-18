@@ -24,7 +24,7 @@ pipeline {
     stage('Maven clean install'){
        steps{
         sh 'mvn clean install -DskipTests=true -X'
-        sh 'mvn package -DskipTests=true'
+        sh 'mvn package -DskipTests=true -X'
        }
     }
     stage('Building image') {
