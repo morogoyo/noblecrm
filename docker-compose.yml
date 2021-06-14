@@ -24,7 +24,7 @@ services:
 
 
   jenkins:
-    image: jenkins/jenkins:lts
+    image: morogoyo/noble-jenkins:0.1
     restart: always
     privileged: true
     user: root
